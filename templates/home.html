@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guidance System</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <style>
+        #contactForm {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+#contactForm label {
+    font-weight: bold;
+}
+
+#contactForm input, #contactForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#contactForm button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#contactForm button:hover {
+    background-color: #45a049;
+}
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+          
+        
+        }
+        .navbar {
+            background-color: #4CAF50;
+            overflow: hidden;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+       
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .section p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        /* Carousel Styling */
+        .carousel {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .carousel img {
+            width: 700px; /* Uniform width */
+            height: 400px; /* Uniform height */
+            object-fit: cover; /* Ensures proper scaling */
+            border-radius: 10px; /* Smooth edges */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Adds a nice shadow effect */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carousel img:hover {
+            transform: scale(1.05); /* Slight zoom on hover for better UI */
+        }
+        /* Button Styling */
+        .cta-button {
+            display: inline-block;
+            margin: 40px auto;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        tr:hover {
+            background-color: #d1ecf1;
+            transition: background 0.3s ease-in-out;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #0044cc, #002266);
+            padding: 20px;
+            width: 280px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 255, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 255, 0.6);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #ddd;
+            line-height: 1.5;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: linear-gradient(90deg, #000428, #004e92);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Logo Styling */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        /* Navigation Links */
+        .nav-links {
+    display: flex;
+    gap: 20px; /* Increased spacing */
+    align-items: center;
+    justify-content: flex-end; /* Aligns the navbar links properly */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Logout Button */
+.logout {
+    background: rgba(255, 0, 0, 0.701);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    margin-left: -10px; /* Shifted further left */
+    margin-right: 45px; /* Creates even spacing */
+}
+
+.logout:hover {
+    background: rgb(117, 30, 1);
+    transform: scale(1.1);
+}
+
+
+/* Responsive Navbar */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    .logout {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">Career Guidance System</div>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+            <a href="login.html" onclick="logout(); return false;" class="logout">Logout</a>
+        </div>
+    </div>
+    <div id="about" class="section">
+        <div class="icon"><i class="fas fa-info-circle"></i></div>
+        <h1>About Us</h1>
+        <p>We are a team of experienced career counselors dedicated to helping you achieve your career goals.</p>
+        <p>college Name <span style="color: Red; font-size:large;" >S. B. Jain Institute of Technology, Management & Research,S. B. Jain Institute of Technology, Management & Research,</span> </p>
+    </div>
+    
+   <center> <table style="width: 50%; border-collapse: collapse; text-align: center; background-color: #f8f9fa; border-radius: 10px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); overflow: hidden; animation: fadeIn 1s ease-in-out;">
+<tr style="background-color: #868686; color: white; font-size: 18px;">
+<th style="padding: 10px; border: 1px solid #ddd;">Name</th>
+<th style="padding: 10px; border: 1px solid #ddd;">Semester</th>
+</tr>
+<tr style="transition: background 0.3s ease-in-out;">
+<td style="padding: 10px; border: 1px solid #dddddd;">Jill</td>
+<td style="padding: 10px; border: 1px solid #ddd;">50</td>
+</tr>
+<tr style="transition: background 0.3s ease-in-out;">
+<td style="padding: 10px; border: 1px solid #ddd;">Jill</td>
+<td style="padding: 10px; border: 1px solid #ddd;">50</td>
+</tr>
+<tr style="transition: background 0.3s ease-in-out;">
+<td style="padding: 10px; border: 1px solid #ddd;">Jill</td>
+<td style="padding: 10px; border: 1px solid #ddd;">50</td>
+</tr>
+<tr style="transition: background 0.3s ease-in-out;">
+<td style="padding: 10px; border: 1px solid #ddd;">Eve</td>
+<td style="padding: 10px; border: 1px solid #ddd;">94</td>
+</tr>
+</table></center>
+  
+</div> 
+    <!-- Home Section -->
+    <!-- <div id="home" class="section">
+        <h1>Welcome to Career Guidance System</h1>
+        <p>Your ultimate destination for career planning and guidance. We help you find the right path for your future.</p>
+        <img src="../static/image1.png" alt="Career Guidance" width="50%">
+    </div> -->
+
+    <!-- Services Section -->
+    <div id="services" class="section">
+        <div class="icon"><i class="fas fa-cogs"></i></div>
+        <h1>Our Services</h1>
+        <p>We offer a wide range of services including career counseling, resume building, interview preparation, and more.</p>
+        <center><div class="carousel">
+            <div><img src="../img.png" alt="AI Career Analysis"></div>
+            <div><img src="../Presentation1.png" alt="ML Path Recommendation"></div>
+            <div><img src="../image.png" alt="Personalized Career Plan"></div>
+        </div>
+    </center>
+       
+        <div class="section" style="background-color: #f4f4f9;">
+            <button class="cta-button" onclick="window.location.href='http://127.0.0.1:5000'">Get Your Career Path</button>
+        </div>
+        <!-- Carousel -->
+      
+
+    <!-- About Us Section -->
+    <h1>User Feedback</h1>
+
+    <div class="card-container">
+        <div class="card">
+            <h2>Personalized Career Paths</h2>
+            <p>The system recommends careers based on skills, interests, and academic performance.</p>
+        </div>
+
+        <div class="card">
+            <h2>AI-Powered Assessment</h2>
+            <p>Uses AI to analyze user input and suggest the best career options.</p>
+        </div>
+
+        <div class="card">
+            <h2>Industry Insights</h2>
+            <p>Provides real-time industry trends and job market insights.</p>
+        </div>
+
+        <div class="card">
+            <h2>Mentorship Support</h2>
+            <p>Connects users with mentors and professionals for career guidance.</p>
+        </div>
+
+        <div class="card">
+            <h2>Resume & Interview Help</h2>
+            <p>Offers resume-building tools and interview preparation guides.</p>
+        </div>
+    </div>
+  
+    <!-- Contact Section -->
+    <div id="contact" class="section">
+        <div class="icon"><i class="fas fa-envelope"></i></div>
+        <h1>Contact Us</h1>
+        <p>If you have any questions or need guidance, feel free to reach out to us.</p>
+        
+        <!-- Contact Form -->
+        <form id="contactForm">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="question">Your Question:</label><br>
+            <textarea id="question" name="question" rows="4" cols="50" required></textarea><br><br>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    
+    <!-- Call to Action Button -->
+    
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2023 Career Guidance System. All rights reserved. SBJITians
+    </div>
+
+    <!-- Slick Carousel JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.carousel').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        });
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Display pop-up message
+            alert("Your data has been sent successfully!");
+            
+            // Optional: Clear the form fields after submission
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("question").value = "";
+        });
+        function logout() {
+        localStorage.removeItem("isAuthenticated"); // Remove authentication
+        alert("Logged out successfully!");
+        window.location.href = "login.html"; // Redirect to login page
+    }
+    // Check if user is authenticated
+    if (localStorage.getItem("isAuthenticated") !== "true") {
+        alert("You must log in first!");
+        window.location.href = "login.html"; // Redirect to login page
+    }
+
+
+    </script>
+     <!-- designed by Team Freelancer -->
+</body>
+</html>

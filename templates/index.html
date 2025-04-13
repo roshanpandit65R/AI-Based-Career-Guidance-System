@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guidance System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #ffffff);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #0077cc;
+            font-size: 32px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin: 20px 0;
+            border-bottom: 3px solid #0077cc;
+            padding-bottom: 5px;
+            font-weight: bold;
+            color: #0077cc;
+        }
+
+        /* Form Styling */
+        .form-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        input, select {
+            padding: 10px;
+            border: 1px solid #0077cc;
+            border-radius: 8px;
+            background-color: #f0f8ff;
+            color: #333;
+            font-size: 14px;
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+        }
+
+        input:focus, select:focus {
+            border-color: #ff6600;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
+            outline: none;
+        }
+
+        /* Button Styling */
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #0077cc, #0055aa);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 119, 204, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Welcome to Career Prediction</h1>
+    
+    <div class="container">
+        <div class="section-title">Academic Performance</div>
+        <form method="post">
+            <div class="form-section">
+                {% for feature in features[:7] %}
+                <div class="form-group">
+                    <label>{{ feature }}:</label>
+                    <input type="text" name="{{ feature }}" required placeholder="Enter a score (1-100)">
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="section-title">Other Information</div>
+            <div class="form-section">
+                {% for feature in features[7:] %}
+                <div class="form-group">
+                    <label>{{ feature }}:</label>
+                    <input type="text" name="{{ feature }}" required placeholder="Enter details">
+                </div>
+                {% endfor %}
+            </div>
+
+            <button type="submit">Predict Career</button>
+        </form>
+
+        <a href="http://127.0.0.1:5500/templates/home.html" style="
+    text-decoration: none;
+    background-color: #007BFF;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+">
+<i class="fa fa-arrow-circle-left">Go Back</i>
+    
+</a>
+    </div>
+     <!-- designed by Team Freelancer -->
+</body>
+</html>

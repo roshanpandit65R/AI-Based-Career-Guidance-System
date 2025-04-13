@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guidance Result</title>
+    <link rel="stylesheet" href="../static/style2.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 70%;
+            z-index: 10;
+        }
+        .progress-bar {
+            height: 25px;
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 12px;
+            text-align: right;
+            font-weight: bold;
+            color: white;
+            padding-right: 10px;
+            line-height: 25px;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            display: none;
+            width: 50%;
+            z-index: 20;
+        }
+        .popup h2 {
+            color: #333;
+        }
+        .popup .icon {
+            font-size: 50px;
+            color: #28a745;
+        }
+        .popup button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 15px;
+        }
+        /* Animated background spans */
+        section {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        section span {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(0, 123, 255, 0.2);
+            border-radius: 50%;
+            animation: animate 20s linear infinite;
+        }
+        @keyframes animate {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-100vh) scale(0); }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <!-- Animated background bubbles -->
+        {% for _ in range(50) %}
+        <span style="left: {{ range(1, 100) | random }}%; top: {{ range(1, 100) | random }}%; animation-duration: {{ range(10, 25) | random }}s;"></span>
+        {% endfor %}
+    </section>
+
+    <div class="container">
+        <h2 style="color: #007BFF;">Predicted Careers</h2>
+        <div style="text-align: left;">
+            {% set colors = ['#007BFF', '#28A745', '#DC3545', '#FFC107', '#17A2B8', '#6610f2'] %}
+            {% for model, prediction in predictions.items() %}
+                {% set color = colors[loop.index0 % colors|length] %}
+                <p style="margin: 10px 0; font-weight: bold; font-size: 18px; color: black;">
+                    {{ prediction }} ({{ prediction_confidences[model] }}%)
+                </p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: {{ prediction_confidences[model] }}%; background-color: {{ color }};">
+                        {{ prediction_confidences[model] }}%
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if best_model %}
+            <div id="popup" class="popup">
+                <span class="icon">✔️</span>
+                <h2>🎉 Your Best Career Choice is:</h2>
+                <p style="font-size: 26px; font-weight: bold; color: #007BFF;">{{ best_prediction }}</p>
+                <p style="font-size: 22px;">with <span style="font-size: 24px; font-weight: bold;">{{ best_confidence }}%</span> confidence!</p>
+                <button onclick="hidePopup()">OK</button>
+            </div>
+        {% endif %}
+        <p style="font-size: 26px; font-weight: bold; color: #007BFF;">{{ best_prediction }}</p>
+        <p style="font-size: 22px;">with <span style="font-size: 24px; font-weight: bold;">{{ best_confidence }}%</span> confidence!</p>
+
+
+        <a href="http://127.0.0.1:5500/templates/home.html" style="
+    text-decoration: none;
+    background-color: #007BFF;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+">
+    Go Back
+</a>
+
+
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById("popup").style.display = "block";
+            setTimeout(hidePopup, 4000); // Hide after 4 seconds
+        }
+
+        function hidePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        window.onload = showPopup; // Show popup on page load
+    </script>
+
+</body>
+</html>
